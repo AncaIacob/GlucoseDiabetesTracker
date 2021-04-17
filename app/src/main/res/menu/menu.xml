@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/glucose"
+        android:icon="@drawable/ic_baseline_bloodtype_24"
+        android:title="Glucose"
+         />
+    <item
+        android:id="@+id/insights"
+
+
+        android:icon="@drawable/ic_baseline_insights_24"
+        android:title="Insights"
+         />
+   <item
+        android:id="@+id/chart"
+        android:icon="@drawable/ic_baseline_insert_chart_outlined_24"
+        android:title="Chart"
+        />
+    <item
+        android:id="@+id/meal"
+        android:icon="@drawable/ic_baseline_lunch_dining_24"
+        android:title="Meal IQ"/>
+    <item
+        android:id="@+id/me"
+        android:icon="@drawable/ic_baseline_person_outline_24"
+        android:title="Me"/>
+</menu>

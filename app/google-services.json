@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "742790555465",
+    "project_id": "glucosediabetestracker",
+    "storage_bucket": "glucosediabetestracker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:742790555465:android:8fda101d807c299e76dc98",
+        "android_client_info": {
+          "package_name": "com.utcn.glucosediabetestracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "742790555465-dcfh2v5aocs6b8pgajc99cvi2edgfnvd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNzWGvvramseC2sheTRsJN8dwBpDOjorI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "742790555465-dcfh2v5aocs6b8pgajc99cvi2edgfnvd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
