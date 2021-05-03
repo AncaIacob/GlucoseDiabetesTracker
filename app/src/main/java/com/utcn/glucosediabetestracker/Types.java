@@ -45,6 +45,12 @@ public class Types {
         typesArrayList.add(types7);
         Types types8 = new Types("7", "After dinner");
         typesArrayList.add(types8);
+        Types types9 = new Types("8", "Before tratament");
+        typesArrayList.add(types9);
+        Types types10 = new Types("9", "After tratament");
+        typesArrayList.add(types10);
+
+
 
     }
     public int getImage()
@@ -67,6 +73,10 @@ public class Types {
                 return R.drawable.v7;
             case "7":
                 return R.drawable.v8;
+            case "8":
+                return R.drawable.v9;
+            case "9":
+                return R.drawable.v10;
 
         }
         return R.drawable.v1;

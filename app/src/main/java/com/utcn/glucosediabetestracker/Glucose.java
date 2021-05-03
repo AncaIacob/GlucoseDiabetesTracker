@@ -39,8 +39,8 @@ public class Glucose extends Fragment  {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-      //display data
-      fStore = FirebaseFirestore.getInstance();
+        //display data
+        fStore = FirebaseFirestore.getInstance();
         auth =FirebaseAuth.getInstance();
         userID = auth.getCurrentUser().getUid();
         Query query = fStore.collection("users").document(userID).collection("glucose_values");
@@ -56,7 +56,7 @@ public class Glucose extends Fragment  {
                 displayDataHolder.display_time_value.setText(displayData.getValue_time());
                 displayDataHolder.display_type_value.setText(displayData.getValue_type());
 
-            //////////////////
+                //////////////////
 
 
 
@@ -71,51 +71,51 @@ public class Glucose extends Fragment  {
                 return new DisplayDataHolder(view);
             }
         };
-
-
-       values_display.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        values_display.setAdapter(displayDataAdapter);
-
-       //add new values
-       View v =  inflater.inflate(R.layout.glucose,container,false);
+        //add new values
+        View v =  inflater.inflate(R.layout.glucose,container,false);
         //recycle view
         values_display = v.findViewById(R.id.recycle_view);
-
-       button_values = v.findViewById(R.id.button_values);
-       button_values.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               Intent intent1 = new Intent(getActivity(),Values.class);
-               startActivity(intent1);
-
-               CustomIntent.customType(getActivity(),"left-to-right");
-           }
-       });
+        values_display.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        values_display.setAdapter(displayDataAdapter);
 
 
-     return v;
-     // end /add new values
+
+
+        button_values = v.findViewById(R.id.button_values);
+        button_values.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(getActivity(),Values.class);
+                startActivity(intent1);
+
+                CustomIntent.customType(getActivity(),"left-to-right");
+            }
+        });
+
+
+        return v;
+        // end /add new values
 
 
 
     }
-     //display data
+    //display data
 
-  public class DisplayDataHolder extends RecyclerView.ViewHolder {
+    public class DisplayDataHolder extends RecyclerView.ViewHolder {
         TextView display_glucose_value, display_date_value, display_time_value, display_type_value;
         View view;
         CardView mCardView;
 
 
-      public DisplayDataHolder(@NonNull View itemView) {
-          super(itemView);
-          display_glucose_value = itemView.findViewById(R.id.glucose_value_display);
-          display_date_value = itemView.findViewById(R.id.date_value_display);
-          display_time_value = itemView.findViewById(R.id.time_value_display);
-          display_type_value = itemView.findViewById(R.id.type_value_display);
-          view = itemView;
-      }
-  }
+        public DisplayDataHolder(@NonNull View itemView) {
+            super(itemView);
+            display_glucose_value = itemView.findViewById(R.id.glucose_value_display);
+            display_date_value = itemView.findViewById(R.id.date_value_display);
+            display_time_value = itemView.findViewById(R.id.time_value_display);
+            display_type_value = itemView.findViewById(R.id.type_value_display);
+            view = itemView;
+        }
+    }
 
     @Override
     public void onStart() {

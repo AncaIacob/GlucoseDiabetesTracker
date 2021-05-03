@@ -278,6 +278,10 @@ public class Values extends AppCompatActivity  {
             return "Before dinner";
         if(value_type_intermediar== 7)
             return "After dinner";
+        if(value_type_intermediar == 8)
+            return "Before tratament";
+        if(value_type_intermediar== 9)
+            return "After tratament";
         else
         return "Out of Bed";
 
