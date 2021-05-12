@@ -185,21 +185,21 @@ public class Chart extends Fragment {
         dataSet.setIconsOffset(new MPPointF(0, 40));
         dataSet.setSelectionShift(5f);
         ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(Color.YELLOW);
-        colors.add(Color.parseColor("#FFA500"));
-        colors.add(Color.CYAN);
-        colors.add(Color.GREEN);
+        colors.add(Color.parseColor("#40C9C0"));
+        colors.add(Color.parseColor("#0699EF"));
+        colors.add(Color.parseColor("#007DB8"));
+        colors.add(Color.parseColor("#003452"));
         dataSet.setColors(colors);
         PieData data = new PieData(dataSet);
         data.setValueFormatter(new PercentFormatter());
         data.setValueTextSize(11f);
-        data.setValueTextColor(Color.RED);
+        data.setValueTextColor(Color.WHITE);
         chart.setNoDataTextColor(Color.RED);
         chart.setData(data);
         chart.highlightValues(null);
         chart.setUsePercentValues(false);
         chart.invalidate();
-        ((PieChartRenderer) chart.getRenderer()).getPaintEntryLabels().setColor(Color.RED);
+        ((PieChartRenderer) chart.getRenderer()).getPaintEntryLabels().setColor(Color.WHITE);
         ((PieChartRenderer) chart.getRenderer()).getPaintEntryLabels().setTextSize(35f);
     }
 }

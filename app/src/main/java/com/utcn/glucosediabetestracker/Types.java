@@ -45,9 +45,9 @@ public class Types {
         typesArrayList.add(types7);
         Types types8 = new Types("7", "After dinner");
         typesArrayList.add(types8);
-        Types types9 = new Types("8", "Before tratament");
+        Types types9 = new Types("8", "Before treatment");
         typesArrayList.add(types9);
-        Types types10 = new Types("9", "After tratament");
+        Types types10 = new Types("9", "After treatment");
         typesArrayList.add(types10);
 
 
