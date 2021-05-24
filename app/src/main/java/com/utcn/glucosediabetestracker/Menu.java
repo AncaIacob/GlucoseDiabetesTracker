@@ -8,6 +8,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -35,7 +37,6 @@ public class Menu extends AppCompatActivity {
             fragmentTransaction.replace(R.id.fragment_contanier,new Glucose()).commit();
 
 
-
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -57,9 +58,8 @@ public class Menu extends AppCompatActivity {
                             break;
                         case R.id.meal:
                             selectedFragmemnt = new Meal();
-                            break;
-                        case R.id.me:
-                            selectedFragmemnt = new Me();
+
+
 
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_contanier,selectedFragmemnt).commit();

@@ -56,7 +56,7 @@ public class Values extends AppCompatActivity  {
     FirebaseFirestore fStore;
     String userID;
 
-
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +77,7 @@ public class Values extends AppCompatActivity  {
         spinner = (Spinner)findViewById(R.id.spinner_type);
         SpinnerAdapterTypes customAdapter = new SpinnerAdapterTypes(this,R.layout.types_spinner,Types.getTypesArrayList());
         spinner.setAdapter(customAdapter);
+
 
 
 
@@ -130,6 +131,7 @@ public class Values extends AppCompatActivity  {
 
      //exit
 
+
         xButton = findViewById(R.id.x);
         xButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,6 +143,8 @@ public class Values extends AppCompatActivity  {
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
+
+
 
 
     }

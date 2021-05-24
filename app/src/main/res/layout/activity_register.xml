@@ -11,17 +11,16 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:elevation="50dp"
         android:text="Sign Up"
         android:textColor="#3399A5"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:elevation="50dp"
         app:layout_constraintBottom_toTopOf="@+id/email_register"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.467"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.319" />
+        app:layout_constraintVertical_bias="0.84" />
 
     <EditText
         android:id="@+id/email_register"

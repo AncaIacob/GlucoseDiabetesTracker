@@ -129,6 +129,7 @@ public class Login extends AppCompatActivity {
                             Intent intent = new Intent(Login.this, Menu.class);
                             startActivity(intent);
                             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                            finish();
                         } else {
                             Toast.makeText(Login.this, "Bad email or password. " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
@@ -207,78 +208,9 @@ public class Login extends AppCompatActivity {
 
 
 
-    }
-
-/*
-//google
-
-private void singIn()
-{
-    Intent signIntent = googleSignInClient.getSignInIntent();
-    startActivityForResult(signIntent, RC_SIGN_IN);
-}
-
-//google
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == RC_SIGN_IN)
-        {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            handleSignInResult(task);
-        }
-    }
-
-    //google
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask)
-    {
-            try{
-                GoogleSignInAccount acc = completedTask.getResult(ApiException.class);
-                Toast.makeText(Login.this,"Signed In Successfully", Toast.LENGTH_SHORT).show();
-                FirebaseGoogleAuth(acc);
-                Intent intent = new Intent(Login.this, Menu.class);
-                startActivity(intent);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-            }
-            catch (ApiException e)
-            {
-                Toast.makeText(Login.this,"Signed In Failed", Toast.LENGTH_SHORT).show();
-                FirebaseGoogleAuth(null);
-            }
 
     }
 
-    //google
-    private void FirebaseGoogleAuth(GoogleSignInAccount acct)
-    {
-        AuthCredential authCredential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        auth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful())
-                {
-                    Toast.makeText(Login.this,"Successful", Toast.LENGTH_SHORT).show();
-                    FirebaseUser user = auth.getCurrentUser();
-                    updateUI(user);
-                }
-                else{
-                    Toast.makeText(Login.this,"Failed", Toast.LENGTH_SHORT).show();
-                    updateUI(null);
-
-                }
-            }
-        });
-    }
-    //google
-    private void updateUI(FirebaseUser firebaseUser)
-    {
-        GoogleSignInAccount account=GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-        if(account !=null)
-        {
-            String personEmail = account.getEmail();
-            Toast.makeText(Login.this,personEmail,Toast.LENGTH_SHORT).show();
-        }
-    } */
 }

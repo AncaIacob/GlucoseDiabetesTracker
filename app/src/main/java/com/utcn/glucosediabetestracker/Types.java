@@ -29,6 +29,8 @@ public class Types {
     }
     public static void initTypes()
     {
+        typesArrayList.clear();
+        typesArrayList = new ArrayList<>();
         Types types1 = new Types("0", "Out of Bed");
         typesArrayList.add(types1);
         Types types2 = new Types("1", "Before Bed");
@@ -45,9 +47,9 @@ public class Types {
         typesArrayList.add(types7);
         Types types8 = new Types("7", "After dinner");
         typesArrayList.add(types8);
-        Types types9 = new Types("8", "Before treatment");
+        Types types9 = new Types("8", "Before tratament");
         typesArrayList.add(types9);
-        Types types10 = new Types("9", "After treatment");
+        Types types10 = new Types("9", "After tratament");
         typesArrayList.add(types10);
 
 

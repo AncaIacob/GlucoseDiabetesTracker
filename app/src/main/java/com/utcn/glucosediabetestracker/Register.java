@@ -93,6 +93,7 @@ public class Register extends AppCompatActivity {
                         {
                             Toast.makeText(Register.this, "User created", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(),Login.class));
+                            finish();
                         }
                         else
                         {

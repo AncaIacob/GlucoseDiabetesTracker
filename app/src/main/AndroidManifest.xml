@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GlucoseDiabetesTracker">
-        <activity android:name=".Values"></activity>
+        <activity android:name=".ChangePassword"></activity>
+        <activity android:name=".FoodValues" />
+        <activity android:name=".Values" />
         <activity android:name=".Register" />
         <activity android:name=".Login" />
         <activity android:name=".Menu" />

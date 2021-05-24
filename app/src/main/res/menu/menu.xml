@@ -21,8 +21,5 @@
         android:id="@+id/meal"
         android:icon="@drawable/ic_baseline_lunch_dining_24"
         android:title="Meal IQ"/>
-    <item
-        android:id="@+id/me"
-        android:icon="@drawable/ic_baseline_person_outline_24"
-        android:title="Me"/>
+
 </menu>
