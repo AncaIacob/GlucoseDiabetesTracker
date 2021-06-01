@@ -139,33 +139,33 @@ public class Insights extends Fragment {
         }
 
         ScatterDataSet set1 = new ScatterDataSet(beforeactivitylist, "Before Activity");
-        set1.setScatterShape(ScatterChart.ScatterShape.TRIANGLE);
-        set1.setColor(Color.parseColor("#82D173"));
+        set1.setScatterShape(ScatterChart.ScatterShape.CROSS);
+        set1.setColor(Color.parseColor("#320A28"));
 
         ScatterDataSet set2 = new ScatterDataSet(afteractivitylist, "After Activity");
         set2.setScatterShape(ScatterChart.ScatterShape.CIRCLE);
-        set2.setColor(Color.parseColor("#1A535C"));
+        set2.setColor(Color.parseColor("#38b3c7"));
 
         ScatterDataSet set3 = new ScatterDataSet(beforetratamentlist, "Before Treatment");
         set3.setScatterShape(ScatterChart.ScatterShape.SQUARE);
         set3.setColor(Color.parseColor("#CA054D"));
 
         ScatterDataSet set4 = new ScatterDataSet(aftertratamentlist, "After Treatment");
-        set4.setScatterShape(ScatterChart.ScatterShape.CROSS);
-        set4.setColor(Color.parseColor("#320A28"));
+        set4.setScatterShape(ScatterChart.ScatterShape.TRIANGLE);
+        set4.setColor(Color.parseColor("#008000"));
 
-        set1.setScatterShapeSize(25f);
-        set2.setScatterShapeSize(25f);
-        set3.setScatterShapeSize(25f);
-        set4.setScatterShapeSize(25f);
+        set1.setScatterShapeSize(30f);
+        set2.setScatterShapeSize(30f);
+        set3.setScatterShapeSize(30f);
+        set4.setScatterShapeSize(30f);
         set1.setValueTextSize(10f);
         set2.setValueTextSize(10f);
         set3.setValueTextSize(10f);
         set4.setValueTextSize(10f);
-        set1.setValueTextColor(Color.parseColor("#82D173"));
-        set2.setValueTextColor(Color.parseColor("#1A535C"));
+        set1.setValueTextColor(Color.parseColor("#320A28"));
+        set2.setValueTextColor(Color.parseColor("#38b3c7"));
         set3.setValueTextColor(Color.parseColor("#CA054D"));
-        set4.setValueTextColor(Color.parseColor("#320A28"));
+        set4.setValueTextColor(Color.parseColor("#008000"));
         ArrayList<IScatterDataSet> dataSets = new ArrayList<>();
         dataSets.add(set1);
         dataSets.add(set2);

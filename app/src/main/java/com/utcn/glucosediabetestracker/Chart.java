@@ -56,7 +56,7 @@ public class Chart extends Fragment {
         chart.setHoleColor(Color.WHITE);
         chart.setTransparentCircleColor(Color.WHITE);
         chart.setTransparentCircleAlpha(110);
-        chart.setHoleRadius(58f);
+        chart.setHoleRadius(56f);
         chart.setTransparentCircleRadius(61f);
         chart.setDrawCenterText(true);
         chart.setRotationAngle(0);

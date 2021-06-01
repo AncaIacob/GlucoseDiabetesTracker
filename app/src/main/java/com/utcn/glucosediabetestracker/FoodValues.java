@@ -52,7 +52,7 @@ public class FoodValues extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseFirestore fStore;
     String userID;
-
+   View layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,9 +83,11 @@ public class FoodValues extends AppCompatActivity {
                 InsertFood insertfood = new InsertFood(value_glucose_before, value_glucose_after, value_food);
 
 
-                Intent intent = new Intent(FoodValues.this, Menu.class);
+               Intent intent = new Intent(FoodValues.this, Menu.class);
                 startActivity(intent);
+
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
 
 
 
@@ -116,6 +118,7 @@ public class FoodValues extends AppCompatActivity {
 
                 Intent intent = new Intent(FoodValues.this, Menu.class);
                 startActivity(intent);
+
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
