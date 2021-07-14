@@ -98,32 +98,4 @@
         app:layout_constraintVertical_bias="0.546"
         app:layout_constraintWidth_percent="0.8" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/facebook_button_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:elevation="50dp"
-        android:src="@drawable/ic_baseline_facebook_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.284"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_register"
-        app:layout_constraintVertical_bias="0.232" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/google_button_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:elevation="50dp"
-        android:src="@drawable/googleg_standard_color_18"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.673"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_register"
-        app:layout_constraintVertical_bias="0.232" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -55,6 +55,8 @@ public class Values extends AppCompatActivity  {
     FirebaseAuth auth;
     FirebaseFirestore fStore;
     String userID;
+    AlertDialog.Builder alert;
+
 
     
 
@@ -103,6 +105,7 @@ public class Values extends AppCompatActivity  {
                // glc_value.put("dateValue", value_date);
                 //glc_value.put("timeValue", value_time);
                // glc_value.put("typeValue", value_type);
+
                 Insert insert = new Insert(value_glucose, value_date, value_time, value_type);
 
 

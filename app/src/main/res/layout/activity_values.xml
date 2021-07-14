@@ -52,10 +52,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.087"
+        app:layout_constraintHorizontal_bias="0.086"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
-        app:layout_constraintVertical_bias="0.827" />
+        app:layout_constraintVertical_bias="0.836" />
 
     <Button
         android:id="@+id/button_time"
@@ -230,8 +230,8 @@
 
     <Spinner
         android:id="@+id/spinner_type"
-        android:layout_width="276dp"
-        android:layout_height="30dp"
+        android:layout_width="281dp"
+        android:layout_height="40dp"
         android:spinnerMode="dialog"
         android:text="Select type"
         android:textColor="@color/black"

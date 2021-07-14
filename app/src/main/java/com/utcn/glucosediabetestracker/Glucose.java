@@ -71,7 +71,7 @@ public class Glucose extends Fragment  {
         fStore = FirebaseFirestore.getInstance();
         auth =FirebaseAuth.getInstance();
         userID = auth.getCurrentUser().getUid();
-        Query query = fStore.collection("users").document(userID).collection("glucose_values");
+        Query query = fStore.collection("users").document(userID).collection("glucose_values").orderBy("value_data", Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<DisplayData> allDisplayData = new FirestoreRecyclerOptions.Builder<DisplayData>()
                 .setQuery(query, DisplayData.class)
                 .build();

@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import maes.tech.intentanim.CustomIntent;
 
+
 public class RegisterAndLogin extends AppCompatActivity {
 
      Button button_login_start, button_register_start;

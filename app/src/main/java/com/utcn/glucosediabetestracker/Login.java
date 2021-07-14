@@ -48,6 +48,8 @@ import com.facebook.appevents.AppEventsLogger;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.Arrays;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 
 public class Login extends AppCompatActivity {
     EditText email_login, password_login;
@@ -57,12 +59,20 @@ public class Login extends AppCompatActivity {
     AlertDialog.Builder forgot_password_alert;
     LayoutInflater inflater;
     FirebaseAuth auth;
+    //facebook
+    private CallbackManager mCallbackManager;
+    private FirebaseAuth mFireBaseAuth;
+    private  FirebaseAuth.AuthStateListener authStateListener;
+    private LoginButton fbLoginButton;
+    private static final String TAG = "FacebookAuthentication";
 
     //google
-    private SignInButton google_button;
-   private  GoogleSignInClient googleSignInClient;
-   private String TAG ="GoogleSingIn";
-   private int RC_SIGN_IN;
+    private SignInButton signInButton;
+    private GoogleSignInClient mGoogleSignInClient;
+    private FirebaseAuth mAuth;
+    private String TAG2 = "Login";
+    private int RC_SIGN_IN = 123;
+
 
 
     @Override
@@ -77,24 +87,7 @@ public class Login extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         forgot_password_alert = new AlertDialog.Builder(this);
         inflater = this.getLayoutInflater();
-/*
-        //Google
-        google_button =findViewById(R.id.google_login);
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
 
-        googleSignInClient = GoogleSignIn.getClient(this, gso);
-
-        google_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                singIn();
-            }
-        });
-
- */
 
 
 
@@ -121,7 +114,7 @@ public class Login extends AppCompatActivity {
                     return;
                 }
                 //aut
-               auth.signInWithEmailAndPassword(emaillogin, passwordlogin).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                auth.signInWithEmailAndPassword(emaillogin, passwordlogin).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
@@ -137,24 +130,7 @@ public class Login extends AppCompatActivity {
 
 
                 });
- /*
-                //aut
-                auth.signInWithEmailAndPassword(emaillogin,passwordlogin).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                    @Override
-                    public void onSuccess(AuthResult authResult) {
-                        Toast.makeText(Login.this, "Login Successffuly", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(Login.this, Menu.class);
-                        startActivity(intent);
-                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(Login.this,e.getMessage(), Toast.LENGTH_SHORT).show();
-
-                    }
-                }); */
 
 
             }
@@ -174,26 +150,26 @@ public class Login extends AppCompatActivity {
                                 //validate the email adress
                                 EditText email_reset_password = view.findViewById(R.id.forgot_pass_pop);
                                 if (email_reset_password.getText().toString().isEmpty()) {
-                                  email_reset_password.setError("Required Field");
+                                    email_reset_password.setError("Required Field");
                                     Toast.makeText(Login.this, "Required Field", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
 
-                                    //send the rest link
-                                    auth.sendPasswordResetEmail(email_reset_password.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
+                                //send the rest link
+                                auth.sendPasswordResetEmail(email_reset_password.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
 
-                                            Toast.makeText(Login.this, "An email was sent to this adress", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Login.this, "An email was sent to this adress", Toast.LENGTH_SHORT).show();
 
-                                        }
-                                    }).addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            Toast.makeText(Login.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(Login.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
-                                        }
-                                    });
+                                    }
+                                });
 
 
 
@@ -205,12 +181,136 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        //facebook
+        mFireBaseAuth = FirebaseAuth.getInstance();
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        fbLoginButton = findViewById(R.id.login_button_facebook);
+        fbLoginButton.setReadPermissions("email","public_profile");
+        mCallbackManager = CallbackManager.Factory.create();
+        fbLoginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Log.d(TAG, "onSucces" + loginResult);
+                handleFacebookToken(loginResult.getAccessToken());
+
+            }
+
+            @Override
+            public void onCancel() {
+                Log.d(TAG, "onCancel");
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Log.d(TAG, "onError" + error);
+
+            }
+        });
 
 
+        //google
+        signInButton = findViewById(R.id.login_button_google);
+        mAuth = FirebaseAuth.getInstance();
 
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signIn();
+            }
+        });
 
 
 
     }
+    //facebook
+    private void handleFacebookToken (AccessToken token){
+        Log.d(TAG, "handleFacebookToken" + token);
 
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        mFireBaseAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()) {
+                    Log.d(TAG, "sign in with credential: successful");
+                    FirebaseUser user = mFireBaseAuth.getCurrentUser();
+                    Intent intent1 = new Intent(Login.this, Menu.class);
+                    startActivity(intent1);
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                    finish();
+
+
+
+
+                }else{
+                    Log.d(TAG, "sign in with credential: failure", task.getException());
+                    Toast.makeText( Login.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+        });
+
+    }
+
+    //google
+    private void signIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
+        else{
+            mCallbackManager.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask)
+    {
+        try {
+            // Google Sign In was successful, authenticate with Firebase
+            GoogleSignInAccount acc = completedTask.getResult(ApiException.class);
+            Toast.makeText(Login.this, "Signed In Successfully", Toast.LENGTH_SHORT).show();
+           FirebaseGoogleAuth(acc);
+
+
+        } catch (ApiException e) {
+            Toast.makeText(Login.this, "Sign In Failed", Toast.LENGTH_SHORT).show();
+            FirebaseGoogleAuth(null);
+        }
+
+    }
+    private  void FirebaseGoogleAuth(GoogleSignInAccount acct){
+        AuthCredential authCredential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+        mAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(Login.this, "Successful", Toast.LENGTH_SHORT).show();
+                    FirebaseUser user2 = mAuth.getCurrentUser();
+                    Intent intent2 = new Intent(Login.this, Menu.class);
+                    startActivity(intent2);
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                    finish();
+                }
+                else{
+                    Toast.makeText(Login.this, "Failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
 }
